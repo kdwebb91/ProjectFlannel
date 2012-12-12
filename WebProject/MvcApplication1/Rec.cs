@@ -8,9 +8,7 @@ namespace Flannel
 {
     class Rec
     {
-        private static string HIPSTER_DB_LOC = "Data Source=C:\\Users\\Kevin\\Documents\\ProjectFlannelDBs\\Hipstermatic.db;Version=3;";
-        //private static string HIPSTER_DB_LOC = "Data Source=C:\\Users\\Jeff\\isrhw\\flannel_tracks\\MillionSongSubset\\AdditionalFiles\\Hipstermatic.db;Version=3;";
-        private static SQLiteConnection HIPSTER_DB = new SQLiteConnection(HIPSTER_DB_LOC);
+        private static SQLiteConnection HIPSTER_DB = new SQLiteConnection(DBLocations.HIPSTER_DB_LOC);
 
         private static List<string> getSortedArtistIds(List<string> artistIds)
         {

@@ -8,9 +8,7 @@ namespace Flannel
 {
     class Term
     {
-        private static string TERM_DB_LOC = "Data Source=C:\\Users\\Kevin\\Documents\\ProjectFlannelDBs\\subset_artist_term.db;Version=3;";
-        //private static string TERM_DB_LOC = "Data Source=C:\\Users\\Jeff\\isrhw\\flannel_tracks\\MillionSongSubset\\AdditionalFiles\\subset_artist_term.db;Version=3;";
-        private static SQLiteConnection TERM_DB = new SQLiteConnection(TERM_DB_LOC);
+        private static SQLiteConnection TERM_DB = new SQLiteConnection(DBLocations.TERM_DB_LOC);
 
         public static List<string> GetGenresFromArtist(string szArtistId)
         {

@@ -117,6 +117,7 @@
   <ItemGroup>
     <Compile Include="Artist.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="DBLocations.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

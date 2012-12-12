@@ -8,9 +8,7 @@ namespace Flannel
 {
     class Similarity
     {
-        private static string SIMILARITY_DB_LOC = "Data Source=C:\\Users\\Kevin\\Documents\\ProjectFlannelDBs\\subset_artist_similarity.db;Version=3;";
-        //private static string SIMILARITY_DB_LOC = "Data Source=C:\\Users\\Jeff\\isrhw\\flannel_tracks\\MillionSongSubset\\AdditionalFiles\\subset_artist_similarity.db;Version=3;";
-        private static SQLiteConnection SIMILARITY_DB = new SQLiteConnection(SIMILARITY_DB_LOC);
+        private static SQLiteConnection SIMILARITY_DB = new SQLiteConnection(DBLocations.SIMILARITY_DB_LOC);
 
         public static List<string> GetSimilarArtists(string szArtistId)
         {

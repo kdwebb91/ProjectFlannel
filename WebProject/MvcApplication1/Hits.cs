@@ -8,9 +8,7 @@ namespace Flannel
 {
     class Hits
     {
-        private static string HITS_DB_LOC = "Data Source=C:\\Users\\Kevin\\Documents\\ProjectFlannelDBs\\subset_artist_term.db;Version=3;";
-        //private static string HITS_DB_LOC = "Data Source=C:\\Users\\Jeff\\isrhw\\flannel_tracks\\MillionSongSubset\\AdditionalFiles\\hits.db;Version=3;";
-        private static SQLiteConnection HITS_DB = new SQLiteConnection(HITS_DB_LOC);
+        private static SQLiteConnection HITS_DB = new SQLiteConnection(DBLocations.HITS_DB_LOC);
 
         public static List<string> SortByHubScore(List<string> artistIds)
         {
