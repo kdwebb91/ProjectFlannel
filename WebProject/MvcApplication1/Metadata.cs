@@ -543,7 +543,7 @@ namespace Flannel
 
         public static void PrintMatchingArtists(string szArtistName)
         {
-            HashSet<string> artistNames = Metadata.GetAllArtistNames();
+            HashSet<string> artistNames = GetAllArtistNames();
             HashSet<string> possibleMatches = new HashSet<string>();
             bool matchFound = false;
             string query = szArtistName;
@@ -582,6 +582,41 @@ namespace Flannel
             {
                 Console.WriteLine("No matches found for " + query + "!");
             }
+        }
+
+        public static string FindArtist(string szArtistName)
+        {
+            if (IsInDB(szArtistName))
+            {
+                return szArtistName;
+            }
+            HashSet<string> artistNames = Metadata.GetAllArtistNames();
+            HashSet<string> possibleMatches = new HashSet<string>();
+            bool matchFound = false;
+            string query = szArtistName;
+            string matchingArtist = string.Empty;
+            foreach (string artistName in artistNames)
+            {
+                if (artistName.Equals(query, StringComparison.OrdinalIgnoreCase))
+                {
+                    matchingArtist = artistName;
+                    matchFound = true;
+                    break;
+                }
+                else if (artistName.ToLower().Contains(query))
+                {
+                    possibleMatches.Add(artistName);
+                }
+            }
+            if (matchFound == false && possibleMatches.Count == 1)
+            {
+                matchingArtist = possibleMatches.FirstOrDefault();
+            }/*
+            else if (possibleMatches.Count > 1)
+            {
+                
+            }*/
+            return matchingArtist;
         }
 
         public static bool IsInDB(string szArtistName)
