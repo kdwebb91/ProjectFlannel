@@ -1,0 +1,77 @@
+﻿@{
+    Layout = "/Content/Layout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Project Flannel Log-in Page</title>
+</head>
+<body>
+
+<div id="container" style="width:100%;position:absolute;top:0px;left:0px;">
+
+<div id="header">
+<h1 style="position:relative;left:50px;bottom:40%">Project Flannel</h1>
+</div>
+
+<div id="content">
+
+<div id="fb-root"></div>
+<script type="text/javascript" language="Javascript" 
+	src="http://ajax.aspnetcdn.com/ajax/jquery/jquery-1.4.1.min.js"></script> 
+<script>
+    window.fbAsyncInit = function () {
+        FB.init({
+            //appId: 'YOUR_APP_ID', // App ID
+            appId: '435662283157258', // App ID
+            status: true, // check login status
+            cookie: true, // enable cookies to allow the server to access the session
+            xfbml: true  // parse XFBML
+        });
+
+        // Additional initialization code here
+        FB.Event.subscribe('auth.authResponseChange', function (response) {
+            if (response.status === 'connected') {
+
+                var uid = response.authResponse.userID;
+                var accessToken = response.authResponse.accessToken;
+
+                var url = '/Home/FacebookLogin';
+                //var url = 'https://www.facebook.com/dialog/oauth?client_id=435662283157258&redirect_uri=http://localhost:23232/Home/ConnectResponse&state=secret';
+                $.post(url, { uid: uid, accessToken: accessToken }, function (data) {
+                });
+
+            } else if (response.status === 'not_authorized') {
+                // the user is logged in to Facebook, 
+                // but has not authenticated your app
+            } else {
+                // the user isn't logged in to Facebook.
+            }
+        });
+    };
+
+    // Load the SDK Asynchronously
+    (function (d) {
+        var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
+        if (d.getElementById(id)) { return; }
+        js = d.createElement('script'); js.id = id; js.async = true;
+        js.src = "//connect.facebook.net/en_US/all.js";
+        ref.parentNode.insertBefore(js, ref);
+    }(document));
+</script>
+
+    <div id="centered">
+@Html.ActionLink("Login!", "FacebookLoginNoJs", "Home")
+<br /><br /><br />
+<div class="fb-login-button" data-show-faces="true" data-width="400" data-max-rows="1"></div>
+</div>
+
+
+</div>
+</div>
+
+</body>
+</html>

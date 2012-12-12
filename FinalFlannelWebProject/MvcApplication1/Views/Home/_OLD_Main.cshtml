@@ -1,0 +1,135 @@
+﻿@{
+    Layout = "/Content/Layout.cshtml";
+
+}
+
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title></title>
+
+
+    <script type='text/javascript' src='http://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js'></script>
+
+<script type="text/javascript" language="Javascript" src="jquery.simpleImageCheck-0.4.js"></script>
+
+
+<script>
+
+
+
+</script>
+</head>
+<body>
+
+<div id="container" style="width:1920px;position:absolute;top:0px;left:0px;">
+
+<div id="header">
+<h1 style="position:relative;left:50px;">Project Flannel</h1>
+</div>
+
+<div id="content">
+    <div id="left_side">
+    <p style="position:relative;left:30px;">
+     <input type="button" name="submit" id="submit" class="SubmitButton"  /><br />
+        
+        <b>Step 1: Select Some Of The Bands From Here -> <br />
+        Step 2: Click Submit. <br />
+        Step 3: ??? <br />
+        Step 4: Profit. <br /></b>
+    </p>
+    </div>
+
+    <div id="right_side">
+        <form id="BandForm">
+        @Html.Raw(ViewBag.Likes)
+        </form>
+
+        <input name="NewBand" id="newband" type="text" />
+        <input type="button" value="Add" onClick="add()" />
+	    <input type="checkbox" id="test" name="test">
+        <label for="test">Checkbox</label>
+        <img src="http://localhost:23232/Content/Images/checkbox_checked.png" width="15" height="15" />
+    
+    </div>
+ </div>
+
+<div id="footer">
+FOOT STUFF</div>
+
+</div>
+
+
+<script  type="text/javascript">
+    var highest_element = "@ViewBag.highest_id";
+
+    function ImageCheckbox(inputElement, imageSrcOn, imageSrcOff) {
+        var input = inputElement;
+        var image = createImageElement();
+        function createImageElement() {
+            var img = document.createElement('img');
+            img.setAttribute('width',"60");
+            img.setAttribute('height', "60");
+            img.setAttribute('style', "margin-top:10px;margin-left:15px");
+            if (input.checked) {
+                img.setAttribute('src', imageSrcOn);
+            }
+            else {
+                img.setAttribute('src', imageSrcOff);
+            }
+
+            img.addEventListener('click', toggle, true);
+
+            input.parentNode.insertBefore(img, input);
+            input.addEventListener('click', toggle, true);
+            input.style.display = 'none';
+
+            return img;
+        }
+
+        function toggle(e) {
+            if (e.currentTarget.nodeName.toLowerCase() == 'img') {
+                input.checked = !input.checked;
+            }
+
+            image.src = (input.checked ? imageSrcOn : imageSrcOff);
+        }
+    }
+
+    function add() {
+        highest_element++;
+        var div = document.createElement("div");
+        div.setAttribute("class", "music_box");
+        var element = document.createElement("input");
+        element.setAttribute("type", "checkbox");
+        element.setAttribute("value", document.getElementById("newband").value);
+        element.setAttribute("name", document.getElementById("newband").value);
+        element.setAttribute("id", highest_element);
+        
+        var element2 = document.createTextNode(document.getElementById("newband").value);
+        var element3 = document.createElement("br");
+
+
+        div.appendChild(element);
+        div.appendChild(element2);
+        div.appendChild(element3);
+        var foo = document.getElementById("BandForm");
+        foo.appendChild(div);
+        
+
+        var checkbox = new ImageCheckbox(element, 'http://localhost:23232/Content/Images/checkbox_checked.png', 'http://localhost:23232/Content/Images/checkbox_unchecked.png');
+
+        document.getElementById("newband").value = "";
+        alert("it worked?");
+    }
+
+    for (var i = 1; i <= highest_element; i++) {
+        var checkbox = new ImageCheckbox(document.getElementById(i), 'http://localhost:23232/Content/Images/checkbox_checked.png', 'http://localhost:23232/Content/Images/checkbox_unchecked.png');
+    }
+
+    
+</script>
+
+</body>
+</html>
