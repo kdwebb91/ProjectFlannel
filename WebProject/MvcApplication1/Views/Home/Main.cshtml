@@ -55,7 +55,7 @@ FOOT STUFF</div>
 <script  type="text/javascript">
     var highest_element = "@ViewBag.highest_id";
 
-    function ImageCheckbox(inputElement, imageSrcOn, imageSrcOff) {
+    function ImageCheckbox(inputElement, imageSrcOn, imageSrcOff, inChecked) {
         var input = inputElement;
         var image = createImageElement();
         function createImageElement() {
@@ -63,6 +63,7 @@ FOOT STUFF</div>
             img.setAttribute('width', "60");
             img.setAttribute('height', "60");
             img.setAttribute('style', "margin-top:10px;margin-left:15px");
+            input.checked = inChecked;
             if (input.checked) {
                 img.setAttribute('src', imageSrcOn);
             }
@@ -116,7 +117,7 @@ FOOT STUFF</div>
                     foo.appendChild(div);
 
 
-                    var checkbox = new ImageCheckbox(element, 'http://localhost:23232/Content/Images/checkbox_checked.png', 'http://localhost:23232/Content/Images/checkbox_unchecked.png');
+                    var checkbox = new ImageCheckbox(element, 'http://localhost:23232/Content/Images/checkbox_checked.png', 'http://localhost:23232/Content/Images/checkbox_unchecked.png', true);
 
                     document.getElementById("newband").value = "";
                 }
@@ -131,7 +132,7 @@ FOOT STUFF</div>
     }
 
     for (var i = 1; i <= highest_element; i++) {
-        var checkbox = new ImageCheckbox(document.getElementById(i), 'http://localhost:23232/Content/Images/checkbox_checked.png', 'http://localhost:23232/Content/Images/checkbox_unchecked.png');
+        var checkbox = new ImageCheckbox(document.getElementById(i), 'http://localhost:23232/Content/Images/checkbox_checked.png', 'http://localhost:23232/Content/Images/checkbox_unchecked.png', false);
     }
 
     function process_data() {
