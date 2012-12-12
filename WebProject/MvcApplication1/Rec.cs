@@ -137,7 +137,10 @@ namespace Flannel
                 List<string> similarArtists = Similarity.GetSimilarArtists(artistId);
                 foreach (string similarArtist in similarArtists)
                 {
-                    artistIdPool.Add(similarArtist);
+                    if (!artistIds.Contains(similarArtist))
+                    {
+                        artistIdPool.Add(similarArtist);
+                    }
                 }
             }
 
