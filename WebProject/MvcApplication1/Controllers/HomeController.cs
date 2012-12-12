@@ -151,12 +151,12 @@ namespace MvcApplication1.Controllers
             return RedirectToAction("Main");
         }
 
-        public JsonResult isInDB(string id)
+        public JsonResult spellCorrect(string id)
         {
-            bool isValid = Metadata.IsInDB(id); //.. check
+            string correct = Metadata.FindArtist(id); //.. check
             var obj = new
             {
-                valid = isValid
+                correct = correct
             };
             return Json(obj);
         }
