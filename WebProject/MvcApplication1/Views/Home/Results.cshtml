@@ -1,0 +1,39 @@
+﻿@{
+    Layout = "/Content/Layout.cshtml";
+
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Results</title>
+</head>
+<body>
+    <div id="container" style="width:1920px;position:absolute;top:0px;left:0px;">
+
+    <div id="header">
+    <h1 style="position:relative;left:50px;">Project Flannel</h1>
+    </div>
+
+    <div id="content">
+        <div id="left_side2">
+        @Html.Raw(ViewBag.Message)
+        <br /><br />
+        
+        </div>
+        <div id="right_side2">
+            <input type="button" name="submit" id="submit" class="BackButton" onclick="go_back();" /><br />
+        </div>
+    </div>
+    </div>
+
+<script  type="text/javascript">
+    function go_back() {
+        location.href = "Main";
+
+    }
+</script>
+</body>
+</html>
