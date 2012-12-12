@@ -11,7 +11,7 @@
     <title>Results</title>
 </head>
 <body>
-    <div id="container" style="width:1920px;position:absolute;top:0px;left:0px;">
+    <div id="container" style="width:100%;position:absolute;top:0px;left:0px;">
 
     <div id="header">
     <h1 style="position:relative;left:50px;">Project Flannel</h1>
@@ -34,6 +34,16 @@
         location.href = "Main";
 
     }
+
+    $(document).ready(function () {      // Wait for the HTML to finish loading.
+        var resize = function () {
+            var height = $(window).height();  // Get the height of the browser window area.
+            var element = $("body");          // Find the element to resize.
+            element.height(height);           // Set the element's height.
+        }
+        resize();
+        $(window).bind("resize", resize);
+    });
 </script>
 </body>
 </html>
