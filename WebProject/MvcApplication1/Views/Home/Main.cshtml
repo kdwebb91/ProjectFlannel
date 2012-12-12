@@ -89,29 +89,44 @@ FOOT STUFF</div>
     }
 
     function add() {
-        highest_element++;
-        var div = document.createElement("div");
-        div.setAttribute("class", "music_box");
-        var element = document.createElement("input");
-        element.setAttribute("type", "checkbox");
-        element.setAttribute("value", document.getElementById("newband").value);
-        element.setAttribute("name", document.getElementById("newband").value);
-        element.setAttribute("id", highest_element);
+        $.ajax({
+            url: '/Home/isInDB',
+            type: 'POST',
+            contentType: 'application/json;',
+            data: JSON.stringify({ id: document.getElementById("newband").value }),
+            success: function (valid) {
+                if (valid.valid) {
+                    highest_element++;
+                    var div = document.createElement("div");
+                    div.setAttribute("class", "music_box");
+                    var element = document.createElement("input");
+                    element.setAttribute("type", "checkbox");
+                    element.setAttribute("value", document.getElementById("newband").value);
+                    element.setAttribute("name", document.getElementById("newband").value);
+                    element.setAttribute("id", highest_element);
 
-        var element2 = document.createTextNode(document.getElementById("newband").value);
-        var element3 = document.createElement("br");
+                    var element2 = document.createTextNode(document.getElementById("newband").value);
+                    var element3 = document.createElement("br");
 
 
-        div.appendChild(element);
-        div.appendChild(element2);
-        div.appendChild(element3);
-        var foo = document.getElementById("BandForm");
-        foo.appendChild(div);
+                    div.appendChild(element);
+                    div.appendChild(element2);
+                    div.appendChild(element3);
+                    var foo = document.getElementById("BandForm");
+                    foo.appendChild(div);
 
 
-        var checkbox = new ImageCheckbox(element, 'http://localhost:23232/Content/Images/checkbox_checked.png', 'http://localhost:23232/Content/Images/checkbox_unchecked.png');
+                    var checkbox = new ImageCheckbox(element, 'http://localhost:23232/Content/Images/checkbox_checked.png', 'http://localhost:23232/Content/Images/checkbox_unchecked.png');
 
-        document.getElementById("newband").value = "";
+                    document.getElementById("newband").value = "";
+                }
+                else {
+                    alert("Artist is not in DB");
+                }
+
+            }
+        });
+
 
     }
 

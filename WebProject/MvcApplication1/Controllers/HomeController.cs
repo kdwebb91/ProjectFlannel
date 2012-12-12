@@ -145,5 +145,14 @@ namespace MvcApplication1.Controllers
             return RedirectToAction("Main");
         }
 
+        public JsonResult isInDB(string id)
+        {
+            bool isValid = Metadata.IsInDB(id); //.. check
+            var obj = new
+            {
+                valid = isValid
+            };
+            return Json(obj);
+        }
     }
 }
