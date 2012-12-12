@@ -72,6 +72,8 @@ namespace MvcApplication1.Controllers
         {
             ViewBag.Message = "Input:<br \\>";
 
+            ViewBag.Message += "<ul>";
+
             String url = Request.Url.ToString();
 
             List<string> Artists = new List<string>();
@@ -83,19 +85,23 @@ namespace MvcApplication1.Controllers
             {
                 String found_match = match.ToString().Substring(1).TrimEnd('|') + "<br \\>";
                 Artists.Add(match.ToString().Substring(1).TrimEnd('|'));
-                ViewBag.Message += found_match;
+                ViewBag.Message += "<li>" + found_match;
             }
-            ViewBag.Message += "<br \\><br \\>Output:<br \\>";
+            ViewBag.Message += "</ul>";
+            ViewBag.Message += "Output:";
 
 
 
 
             List<Song> test = Rec.GeneratePlaylist(Artists);
+            ViewBag.Message += "<ul>";
             foreach (Song sng in test)
             {
-                ViewBag.Message += sng.Title + "<br \\>";
-                ViewBag.Message += sng.Artist + "<br \\>";
+                string temp = "<li>" + sng.Title + " by " + sng.Artist + "<br \\>";
+                ViewBag.Message += temp;
+                //ViewBag.Message += " by " + sng.Artist + "<br \\>";
             }
+            ViewBag.Message += "</ul>";
             return View();
         }
 
@@ -151,16 +157,6 @@ namespace MvcApplication1.Controllers
             var obj = new
             {
                 valid = isValid
-            };
-            return Json(obj);
-        }
-
-        public JsonResult spellCorrect(string id)
-        {
-            string correct = Metadata.FindArtist(id); //.. check
-            var obj = new
-            {
-                correct = correct
             };
             return Json(obj);
         }
