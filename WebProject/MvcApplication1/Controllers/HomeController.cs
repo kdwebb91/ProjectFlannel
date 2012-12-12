@@ -154,5 +154,15 @@ namespace MvcApplication1.Controllers
             };
             return Json(obj);
         }
+
+        public JsonResult spellCorrect(string id)
+        {
+            string correct = Metadata.FindArtist(id); //.. check
+            var obj = new
+            {
+                correct = correct
+            };
+            return Json(obj);
+        }
     }
 }

@@ -90,23 +90,24 @@ FOOT STUFF</div>
     }
 
     function add() {
+
         $.ajax({
-            url: '/Home/isInDB',
+            url: '/Home/spellCorrect',
             type: 'POST',
             contentType: 'application/json;',
             data: JSON.stringify({ id: document.getElementById("newband").value }),
-            success: function (valid) {
-                if (valid.valid) {
+            success: function (correct) {
+                if (correct.correct != "") {
                     highest_element++;
                     var div = document.createElement("div");
                     div.setAttribute("class", "music_box");
                     var element = document.createElement("input");
                     element.setAttribute("type", "checkbox");
-                    element.setAttribute("value", document.getElementById("newband").value);
-                    element.setAttribute("name", document.getElementById("newband").value);
+                    element.setAttribute("value", correct.correct);
+                    element.setAttribute("name", correct.correct);
                     element.setAttribute("id", highest_element);
 
-                    var element2 = document.createTextNode(document.getElementById("newband").value);
+                    var element2 = document.createTextNode(correct.correct);
                     var element3 = document.createElement("br");
 
 
